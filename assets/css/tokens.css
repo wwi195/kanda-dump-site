@@ -1,0 +1,81 @@
+:root {
+  /* ===== Color: 鋼板の紺（ベース） ===== */
+  --color-steel-900: #14202A;
+  --color-steel-800: #1B2C39;
+  --color-steel-700: #253A4A;
+
+  /* ===== Color: 砂・土の階調 ===== */
+  --color-sand-100: #E4D7BB;
+  --color-sand-300: #C9B48C;
+  --color-soil-500: #8A5A2B;
+  --color-soil-700: #5E4630;
+
+  /* ===== Color: 安全標識の黄（アクセント。使用箇所を絞る） ===== */
+  --color-safety-yellow: #F0B429;
+  --color-safety-yellow-dim: #C68F1D;
+
+  /* ===== Color: 紙白 ===== */
+  --color-paper: #F7F3EA;
+
+  /* ===== Semantic color roles ===== */
+  --color-bg: var(--color-paper);
+  --color-bg-inverse: var(--color-steel-900);
+  --color-text: var(--color-steel-900);
+  --color-text-inverse: var(--color-paper);
+  --color-text-muted: var(--color-steel-700);
+  --color-border: var(--color-sand-300);
+  --color-accent: var(--color-safety-yellow);
+  --color-accent-dim: var(--color-safety-yellow-dim);
+  --color-link: var(--color-steel-800);
+  --color-focus-ring: var(--color-safety-yellow);
+
+  /* ===== Typography ===== */
+  --font-heading: 'Zen Kaku Gothic New', -apple-system, 'Hiragino Sans', sans-serif;
+  --font-body: 'Zen Kaku Gothic New', -apple-system, 'Hiragino Sans', sans-serif;
+  --font-label: 'Oswald', 'Zen Kaku Gothic New', sans-serif;
+
+  --fw-heading: 900;
+  --fw-body: 400;
+  --fw-label: 500;
+
+  --fs-hero: clamp(2rem, 5vw + 1rem, 4.5rem);
+  --fs-h2: clamp(1.5rem, 2.5vw + 1rem, 2.75rem);
+  --fs-h3: clamp(1.15rem, 1.2vw + 0.8rem, 1.5rem);
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+  --fs-label: 0.8125rem;
+
+  --lh-heading: 1.25;
+  --lh-body: 1.8;
+
+  --ls-label: 0.08em;
+
+  /* ===== Spacing scale (8px base) ===== */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 4rem;
+  --space-7: 6rem;
+  --space-8: 8rem;
+
+  /* ===== Layout ===== */
+  --container-max: 1120px;
+  --container-pad: var(--space-2);
+  --radius-none: 0;
+
+  /* ===== Motion ===== */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 200ms;
+  --duration-base: 500ms;
+  --duration-slow: 900ms;
+
+  /* ===== Z-index scale ===== */
+  --z-base: 0;
+  --z-strata: 1;
+  --z-content: 10;
+  --z-header: 100;
+  --z-nav-overlay: 200;
+  --z-focus: 999;
+}
