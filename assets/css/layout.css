@@ -197,6 +197,11 @@
   }
 }
 
+.flow-placeholder {
+  padding: var(--space-5) var(--space-3);
+  text-align: center;
+}
+
 /* ==== Company ==== */
 .section--company .l-container {
   display: grid;
@@ -217,6 +222,10 @@
   flex-wrap: wrap;
   gap: var(--space-3);
   margin-top: var(--space-4);
+}
+
+.contact-fax {
+  margin-top: var(--space-2);
 }
 
 /* ==== Footer ==== */
