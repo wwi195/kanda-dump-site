@@ -354,9 +354,29 @@
 }
 
 @media (max-width: 560px) {
-  .company-table th {
+  .company-table,
+  .company-table tbody,
+  .company-table tr,
+  .company-table th,
+  .company-table td {
+    display: block;
     width: auto;
+  }
+
+  .company-table th,
+  .company-table td {
     white-space: normal;
+    padding: 0;
+    border-bottom: none;
+  }
+
+  .company-table tr {
+    padding-block: var(--space-2);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .company-table th {
+    margin-bottom: var(--space-1);
   }
 }
 
