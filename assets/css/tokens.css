@@ -1,18 +1,15 @@
 :root {
-  /* ===== Color: 鋼板の紺（ベース） ===== */
-  --color-steel-900: #14202A;
-  --color-steel-800: #1B2C39;
-  --color-steel-700: #253A4A;
+  /* ===== Color: 鋼板グレー（ベース。ガンメタル階調） ===== */
+  --color-steel-900: #24282C;
+  --color-steel-800: #2E3338;
+  --color-steel-700: #3B4247;
+  --color-steel-500: #6B7278;
+  --color-steel-300: #A9AFB5;
+  --color-steel-100: #E9EAEC;
 
-  /* ===== Color: 砂・土の階調 ===== */
-  --color-sand-100: #E4D7BB;
-  --color-sand-300: #C9B48C;
-  --color-soil-500: #8A5A2B;
-  --color-soil-700: #5E4630;
-
-  /* ===== Color: 安全標識の黄（アクセント。使用箇所を絞る） ===== */
-  --color-safety-yellow: #F0B429;
-  --color-safety-yellow-dim: #C68F1D;
+  /* ===== Color: 工業オレンジ（アクセント。使用箇所を絞る） ===== */
+  --color-industrial-orange: #E0672A;
+  --color-industrial-orange-dim: #C05821;
 
   /* ===== Color: 紙白 ===== */
   --color-paper: #F7F3EA;
@@ -23,11 +20,11 @@
   --color-text: var(--color-steel-900);
   --color-text-inverse: var(--color-paper);
   --color-text-muted: var(--color-steel-700);
-  --color-border: var(--color-sand-300);
-  --color-accent: var(--color-safety-yellow);
-  --color-accent-dim: var(--color-safety-yellow-dim);
+  --color-border: var(--color-steel-300);
+  --color-accent: var(--color-industrial-orange);
+  --color-accent-dim: var(--color-industrial-orange-dim);
   --color-link: var(--color-steel-800);
-  --color-focus-ring: var(--color-safety-yellow);
+  --color-focus-ring: var(--color-industrial-orange);
 
   /* ===== Typography ===== */
   --font-heading: 'Zen Kaku Gothic New', -apple-system, 'Hiragino Sans', sans-serif;
