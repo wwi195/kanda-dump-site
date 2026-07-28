@@ -34,27 +34,6 @@
               box-shadow var(--duration-fast) var(--ease-out);
 }
 
-/* ==== Hero: video crossfade ==== */
-.hero__video {
-  transition: opacity var(--duration-slow) var(--ease-out);
-}
-
-.hero__video.is-active {
-  opacity: 1;
-}
-
-/* ==== Hero: 地層が左から積み上がるフォールバック演出（CSSのみで完結） ==== */
-@keyframes strata-grow {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
-
-.hero__stratum {
-  transform: scaleX(0);
-  animation: strata-grow var(--duration-slow) var(--ease-out) forwards;
-  animation-delay: calc(var(--i, 0) * 150ms + 150ms);
-}
-
 /* ==== Scroll reveal ==== */
 [data-reveal] {
   opacity: 0;
@@ -80,9 +59,5 @@
   [data-reveal] {
     opacity: 1;
     transform: none;
-  }
-
-  .hero__stratum {
-    transform: scaleX(1);
   }
 }
