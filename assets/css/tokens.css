@@ -70,7 +70,6 @@
 
   /* ===== Z-index scale ===== */
   --z-base: 0;
-  --z-strata: 1;
   --z-content: 10;
   --z-header: 100;
   --z-nav-overlay: 200;
