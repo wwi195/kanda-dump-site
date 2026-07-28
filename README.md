@@ -22,9 +22,9 @@ python -m http.server
 ├── robots.txt              全ページ noindex（試作フェーズ用）
 ├── assets/
 │   ├── css/                reset → tokens → layout → components → animation の順で読み込み
-│   ├── js/                 main.js（ナビ） / scroll-reveal.js（出現・カウントアップ） / hero-motion.js（動画・地層演出）
-│   ├── img/                画像プレースホルダ
-│   └── video/              ヒーロー動画の配置場所（現状は未配置）
+│   ├── js/                 main.js（ナビ） / scroll-reveal.js（出現・カウントアップ）
+│   ├── img/                画像プレースホルダ（hero/ にヒーロー背景写真）
+│   └── video/              （現在未使用。将来的に動画演出を追加する場合はここに配置）
 ├── tools/                  画像最適化・リンクチェック等のローカル専用Pythonスクリプト（未実装・空）
 ├── api/                    将来の問い合わせ・見積りAPI用スタブ（未実装・空）
 └── .github/workflows/deploy.yml   main pushでGitHub Pagesへ自動デプロイ
@@ -49,7 +49,7 @@ python -m http.server
 - [ ] フッターの住所
 - [ ] お問い合わせの受付（営業）時間
 - [ ] ロゴ画像・OGP画像・favicon・正式なURL（現状は未設定）
-- [ ] ヒーロー動画（`assets/video/` に実写を配置し `index.html` の `<source src>` を差し替え。動画が無い間はCSSのみの地層フォールバックが自動表示される）
+- [ ] ヒーロー背景写真（現在は無料ストック写真の仮画像。`assets/img/hero/hero-highway.jpg` を自社の実写トラック／高速道路の写真に差し替える）
 - [ ] `robots.txt` と `<meta name="robots">` の `noindex,nofollow` を外す（検索に載せてよいタイミングで）
 - [ ] 問い合わせフォームの実装（`index.html` お問い合わせセクション内のコメント、および `api/README.md` を参照）
 
@@ -57,5 +57,6 @@ python -m http.server
 
 - `tools/optimize_images.py`／`tools/check_links.py`：ローカル専用のPythonユーティリティ
 - `api/app.py`：問い合わせ受付・概算見積りAPI（GitHub Pagesでは動作しないため、公開時は別ホストへのデプロイが必要。詳細は `api/README.md` を参照）
+- ヒーロー背景の複数写真スライドショー化（プランC）：トラック・高速道路・積み込み風景などを数秒ごとに切り替える。実装時は`hero-motion.js`相当のJSを新規に書き起こす想定（別途ブレストしてから着手する）
 
-現時点ではどちらも空ファイルのままにしてあり、実装するタスク設定ができた段階で着手する。
+`tools/`・`api/`は現時点ではどちらも空ファイルのままにしてあり、実装するタスク設定ができた段階で着手する。
