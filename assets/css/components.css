@@ -153,26 +153,6 @@
 }
 
 /* ==== Hero ==== */
-.hero__video {
-  opacity: 0;
-}
-
-.hero__stratum:nth-child(1) {
-  background-color: var(--color-steel-100);
-}
-
-.hero__stratum:nth-child(2) {
-  background-color: var(--color-steel-300);
-}
-
-.hero__stratum:nth-child(3) {
-  background-color: var(--color-steel-500);
-}
-
-.hero__stratum:nth-child(4) {
-  background-color: var(--color-steel-700);
-}
-
 .hero__scrim {
   background: linear-gradient(180deg, rgba(20, 32, 42, 0.35) 0%, rgba(20, 32, 42, 0.88) 100%);
 }
