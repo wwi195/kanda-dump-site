@@ -1,39 +1,45 @@
 :root {
-  /* ===== Color: 鋼板グレー（ベース。ガンメタル階調） ===== */
-  --color-steel-900: #24282C;
-  --color-steel-800: #2E3338;
-  --color-steel-700: #3B4247;
-  --color-steel-500: #6B7278;
-  --color-steel-300: #A9AFB5;
-  --color-steel-100: #E9EAEC;
+  /* ===== Color: ロゴ由来の青（紺〜空色） =====
+     既存CSSが steel-* / industrial-orange を参照しているため、変数名は残して値をロゴ配色に置き換える */
+  --color-navy-950: #071D3D;   /* 濃紺：暗いセクション・フッター */
+  --color-navy-700: #0B3A7A;   /* 紺：見出し・文字 */
+  --color-blue-600: #0C63C4;   /* 青：ボタン */
+  --color-blue-700: #0A52A3;
+  --color-sky-400:  #2E9BEA;   /* 空色：道路・線・強調 */
+  --color-mist-100: #EAF2FA;   /* 薄青：背景の切り替え */
 
-  /* ===== Color: 工業オレンジ（アクセント。使用箇所を絞る） ===== */
-  --color-industrial-orange: #E0672A;
-  --color-industrial-orange-dim: #C05821;
+  --color-steel-900: var(--color-navy-950);
+  --color-steel-800: #0E2A52;
+  --color-steel-700: #3C4E66;
+  --color-steel-500: #6A7C93;
+  --color-steel-300: #C9D6E5;
+  --color-steel-100: var(--color-mist-100);
 
-  /* ===== Color: 紙白 ===== */
-  --color-paper: #F7F3EA;
+  --color-industrial-orange: var(--color-sky-400);
+  --color-industrial-orange-dim: var(--color-blue-600);
+
+  --color-paper: #F7FAFD;
 
   /* ===== Semantic color roles ===== */
   --color-bg: var(--color-paper);
-  --color-bg-inverse: var(--color-steel-900);
-  --color-text: var(--color-steel-900);
-  --color-text-inverse: var(--color-paper);
+  --color-bg-inverse: var(--color-navy-950);
+  --color-text: #13233A;
+  --color-text-inverse: #F7FAFD;
   --color-text-muted: var(--color-steel-700);
   --color-border: var(--color-steel-300);
-  --color-accent: var(--color-industrial-orange);
-  --color-accent-dim: var(--color-industrial-orange-dim);
-  --color-link: var(--color-steel-800);
-  --color-focus-ring: var(--color-industrial-orange);
+  --color-accent: var(--color-sky-400);
+  --color-accent-dim: var(--color-blue-600);
+  --color-link: var(--color-navy-700);
+  --color-focus-ring: var(--color-sky-400);
 
   /* ===== Typography ===== */
   --font-heading: 'Zen Kaku Gothic New', -apple-system, 'Hiragino Sans', sans-serif;
   --font-body: 'Zen Kaku Gothic New', -apple-system, 'Hiragino Sans', sans-serif;
-  --font-label: 'Oswald', 'Zen Kaku Gothic New', sans-serif;
+  --font-label: 'Barlow Semi Condensed', 'Zen Kaku Gothic New', sans-serif;
 
   --fw-heading: 900;
   --fw-body: 400;
-  --fw-label: 500;
+  --fw-label: 600;
 
   --fs-hero: clamp(2rem, 5vw + 1rem, 4.5rem);
   --fs-h2: clamp(1.5rem, 2.5vw + 1rem, 2.75rem);
@@ -45,7 +51,7 @@
   --lh-heading: 1.25;
   --lh-body: 1.8;
 
-  --ls-label: 0.08em;
+  --ls-label: 0.04em;
 
   /* ===== Spacing scale (8px base) ===== */
   --space-1: 0.5rem;
@@ -61,9 +67,11 @@
   --container-max: 1120px;
   --container-pad: var(--space-2);
   --radius-none: 0;
+  --radius-s: 4px;
 
   /* ===== Motion ===== */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-drive: cubic-bezier(0.65, 0, 0.35, 1);
   --duration-fast: 200ms;
   --duration-base: 500ms;
   --duration-slow: 900ms;
@@ -71,6 +79,7 @@
   /* ===== Z-index scale ===== */
   --z-base: 0;
   --z-content: 10;
+  --z-route: 90;
   --z-header: 100;
   --z-nav-overlay: 200;
   --z-focus: 999;

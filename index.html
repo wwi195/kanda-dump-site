@@ -10,13 +10,15 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Barlow+Semi+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="assets/css/reset.css">
 <link rel="stylesheet" href="assets/css/tokens.css">
 <link rel="stylesheet" href="assets/css/layout.css">
 <link rel="stylesheet" href="assets/css/components.css">
 <link rel="stylesheet" href="assets/css/animation.css">
+<link rel="stylesheet" href="assets/css/motion.css">
+<script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
 
@@ -53,6 +55,20 @@
     </button>
   </div>
 </header>
+
+<nav class="route" aria-label="ページ内の現在地" data-route>
+  <div class="route__road" aria-hidden="true"><span class="route__done"></span></div>
+  <ol class="route__stops">
+    <li><a class="route__stop" href="#top" data-stop="top"><span class="route__dot"></span><span class="route__name">出発</span></a></li>
+    <li><a class="route__stop" href="#business" data-stop="business"><span class="route__dot"></span><span class="route__name">事業内容</span></a></li>
+    <li><a class="route__stop" href="#flow" data-stop="flow"><span class="route__dot"></span><span class="route__name">仕事の流れ</span></a></li>
+    <li><a class="route__stop" href="#company" data-stop="company"><span class="route__dot"></span><span class="route__name">会社概要</span></a></li>
+    <li><a class="route__stop" href="#contact" data-stop="contact"><span class="route__dot"></span><span class="route__name">お問い合わせ</span></a></li>
+  </ol>
+  <span class="route__truck" aria-hidden="true">
+    <svg viewBox="0 0 34 20"><rect class="route__cargo" x="1" y="2" width="20" height="12" rx="1"/><path class="route__cab" d="M22 5h6l5 5v4H22z"/><path class="route__window" d="M24 6.5h3.3l3 3H24z"/><circle class="route__wheel" cx="7" cy="16" r="2.8"/><circle class="route__wheel" cx="27" cy="16" r="2.8"/></svg>
+  </span>
+</nav>
 
 <main id="main">
 
@@ -92,28 +108,27 @@
 
   <section class="section" id="business">
     <div class="l-container">
-      <p class="section__label" data-reveal>SERVICE</p>
       <h2 class="section__title" data-reveal>事業内容</h2>
       <p class="section__lead" data-reveal>4つの事業で、神奈川県内を中心にお客様の大切な荷物を運びます。</p>
 
       <div class="card-grid">
         <article class="card" data-reveal style="--i:0">
-          <p class="card__number">01</p>
+          <span class="card__icon"><svg viewBox="0 0 48 32" aria-hidden="true"><path d="M3 6h26v18H3z"/><path d="M29 12h9l6 6v6H29z"/><circle cx="11" cy="26" r="3.5"/><circle cx="36" cy="26" r="3.5"/></svg></span>
           <h3 class="card__title">一般貨物運送事業</h3>
           <p class="card__text">神奈川県を拠点に、一般貨物の集荷・配送に対応します。10tダンプから箱車まで、荷物の量や性質に合わせて車両を選定します。</p>
         </article>
         <article class="card" data-reveal style="--i:1">
-          <p class="card__number">02</p>
+          <span class="card__icon"><svg viewBox="0 0 48 32" aria-hidden="true"><path d="M10 6h28v22H10z"/><path d="M10 12h28"/><path d="M22 17l4 3-4 3"/><path d="M4 28h40"/></svg></span>
           <h3 class="card__title">精密機器運搬・搬入出</h3>
           <p class="card__text">精密機器の運搬から現場への搬入・搬出まで対応します。エアサスペンション搭載のウィング車で、丁寧な取り扱いを徹底します。</p>
         </article>
         <article class="card" data-reveal style="--i:2">
-          <p class="card__number">03</p>
+          <span class="card__icon"><svg viewBox="0 0 48 32" aria-hidden="true"><path d="M16 9l5-6 5 6"/><path d="M21 3v10"/><path d="M8 13h32l-4 16H12z"/><path d="M18 18v6M24 18v6M30 18v6"/></svg></span>
           <h3 class="card__title">産業廃棄物の収集運搬</h3>
           <p class="card__text">産業廃棄物収集運搬業の許可を準備中です。取得でき次第対応いたしますので、お気軽にご相談ください。</p>
         </article>
         <article class="card" data-reveal style="--i:3">
-          <p class="card__number">04</p>
+          <span class="card__icon"><svg viewBox="0 0 48 32" aria-hidden="true"><path d="M4 28h40"/><path d="M8 28V12h10v16"/><path d="M22 28V6h10v22"/><path d="M36 28V16h6"/><path d="M8 18h10M22 12h10M22 18h10"/></svg></span>
           <h3 class="card__title">建築資材運搬</h3>
           <p class="card__text">建築現場で使用する資材の運搬に対応します。工程に合わせた搬入スケジュールのご相談も承ります。</p>
         </article>
@@ -123,7 +138,6 @@
 
   <section class="section section--flow" id="flow">
     <div class="l-container">
-      <p class="section__label" data-reveal>FLOW</p>
       <h2 class="section__title" data-reveal>仕事の流れ</h2>
       <div class="flow-placeholder" data-reveal>
         <p class="flow-placeholder__text">実際の業務フローを確認してから差し替えます。</p>
@@ -162,7 +176,6 @@
 
   <section class="section section--company" id="company">
     <div class="l-container">
-      <p class="section__label" data-reveal>COMPANY</p>
       <h2 class="section__title" data-reveal>会社概要</h2>
 
       <!-- TODO:実データ：所在地・設立・資本金・従業員数・許可番号・対応エリア詳細は未確定です -->
@@ -202,7 +215,6 @@
 
   <section class="section section--contact" id="contact">
     <div class="l-container">
-      <p class="section__label" data-reveal>CONTACT</p>
       <h2 class="section__title" data-reveal>お問い合わせ</h2>
       <p class="section__lead" data-reveal>見積りは無料です。運びたいものと場所、希望の時期をお知らせいただければ、当日〜翌営業日中に概算をご案内します。</p>
 
@@ -242,6 +254,7 @@
 
 <script src="assets/js/main.js" defer></script>
 <script src="assets/js/scroll-reveal.js" defer></script>
+<script src="assets/js/route.js" defer></script>
   <script src="https://wwi195.github.io/site-analytics/tracker.js?v=1" data-site-id="kanda-dump-site"></script>
 </body>
 </html>

@@ -1,0 +1,202 @@
+/* ========================================================
+   運送らしい動き
+   - 最初の画面：写真がこちらへ近づき、文字が走り込む
+   - 現在地ルート：スクロールに合わせてトラックが道路を進む（ここが主役）
+   - カード：荷物を積み込むように横から入る
+   ======================================================== */
+
+/* 登場前のカード（右にずらして待機）で横スクロールが出ないように */
+main { overflow-x: clip; }
+
+/* ---- ヒーロー：ページを開いた瞬間の一連の動き ---- */
+.js .hero__image {
+  transform: scale(1.14);
+  transform-origin: 62% 58%;
+  transition: transform 2.8s var(--ease-out);
+}
+.js.is-loaded .hero__image { transform: scale(1); }
+
+.js .hero__label,
+.js .hero__statement,
+.js .hero__actions {
+  opacity: 0;
+  transform: translateX(-48px);
+  transition: opacity 0.7s var(--ease-out), transform 0.9s var(--ease-out), clip-path 1.1s var(--ease-drive);
+}
+.js .hero__statement { clip-path: inset(0 100% 0 0); }
+.js.is-loaded .hero__label     { opacity: 1; transform: none; transition-delay: 0.35s; }
+.js.is-loaded .hero__statement { opacity: 1; transform: none; clip-path: inset(0 0 0 0); transition-delay: 0.55s; }
+.js.is-loaded .hero__actions   { opacity: 1; transform: none; transition-delay: 1.25s; }
+
+/* 文字の前を走り抜ける光の筋（ヘッドライト） */
+.hero__content { position: relative; }
+.hero__content::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(var(--space-7) - 18px);
+  width: 160px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-sky-400) 60%, #fff);
+  opacity: 0;
+  pointer-events: none;
+}
+.is-loaded .hero__content::before { animation: headlight 1.3s var(--ease-drive) 0.25s both; }
+@keyframes headlight {
+  0%   { opacity: 0; transform: translateX(-200px); }
+  15%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { opacity: 0; transform: translateX(min(78vw, 900px)); }
+}
+
+.hero__accent { position: relative; color: #fff; }
+.hero__accent::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 4px;
+  background: var(--color-sky-400);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.6s var(--ease-out);
+}
+.is-loaded .hero__accent::after { transform: scaleX(1); transition-delay: 1.4s; }
+
+/* ---- 見出し：道路の白線が引かれる ---- */
+.section__title::after {
+  content: "";
+  display: block;
+  width: 120px;
+  height: 4px;
+  margin-top: var(--space-2);
+  background: repeating-linear-gradient(90deg, var(--color-sky-400) 0 22px, transparent 22px 34px);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.9s var(--ease-drive) 0.2s;
+}
+.section__title.is-visible::after { transform: scaleX(1); }
+
+/* ---- カード：荷物を積み込むように横から ---- */
+.card[data-reveal] {
+  transform: translateX(56px);
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+.card[data-reveal].is-visible { transform: none; }
+.card[data-reveal].is-visible:hover,
+.card[data-reveal].is-visible:focus-within { transform: translateY(-2px); transition-duration: var(--duration-fast); transition-delay: 0s; }
+.card::before {
+  content: "";
+  position: absolute;
+  left: -1px; right: -1px; top: -1px;
+  height: 4px;
+  background: var(--color-blue-600);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.7s var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 90ms + 0.45s);
+}
+.card.is-visible::before { transform: scaleX(1); }
+.card:hover .card__icon svg { animation: icon-drive 0.6s var(--ease-out); }
+@keyframes icon-drive {
+  0%   { transform: translateX(0); }
+  40%  { transform: translateX(6px); }
+  100% { transform: translateX(0); }
+}
+
+/* ---- 現在地ルート ---- */
+.route {
+  position: fixed;
+  z-index: var(--z-route);
+  pointer-events: none;
+  --p: 0;
+}
+.route__stops { list-style: none; padding: 0; margin: 0; }
+.route__stop {
+  pointer-events: auto;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+.route__dot {
+  flex-shrink: 0;
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  background: var(--color-paper);
+  border: 3px solid var(--color-steel-500);
+  transition: border-color 0.3s, background-color 0.3s, transform 0.3s var(--ease-out), box-shadow 0.3s;
+}
+.route__stop.is-passed .route__dot { border-color: var(--color-sky-400); background: var(--color-sky-400); }
+.route__stop.is-current .route__dot { transform: scale(1.35); box-shadow: 0 0 0 4px rgba(46, 155, 234, 0.28); }
+.route__name {
+  font-size: 12px;
+  font-weight: 700;
+  white-space: nowrap;
+  color: var(--color-steel-500);
+  transition: color 0.3s;
+}
+.route__stop.is-current .route__name { color: var(--color-navy-700); }
+.route.on-dark .route__name { color: rgba(247, 250, 253, 0.6); }
+.route.on-dark .route__stop.is-current .route__name { color: #fff; }
+.route__stop:focus-visible { outline: 2px solid var(--color-focus-ring); outline-offset: 4px; }
+
+.route__road {
+  position: absolute;
+  background: rgba(106, 124, 147, 0.35);
+  overflow: hidden;
+}
+.route__road::before { content: ""; position: absolute; z-index: 1; }
+.route__done { position: absolute; left: 0; top: 0; background: var(--color-sky-400); }
+.route__truck { position: absolute; width: 34px; height: 20px; }
+.route__truck svg { width: 100%; height: 100%; overflow: visible; }
+.route__cargo  { fill: #fff; stroke: var(--color-navy-700); stroke-width: 1.4; }
+.route__cab    { fill: var(--color-blue-600); }
+.route__window { fill: #BFE2FF; }
+.route__wheel  { fill: var(--color-navy-950); stroke: #fff; stroke-width: 0.8; }
+.route.is-moving .route__truck svg { animation: truck-bump 0.22s linear infinite; }
+@keyframes truck-bump {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-1px); }
+}
+
+/* 縦の道路（広い画面：左の余白） */
+@media (min-width: 1360px) {
+  .route { left: 28px; top: 120px; height: calc(100vh - 176px); width: 140px; --len: calc(100vh - 176px); }
+  .route__road { left: 0; top: 0; bottom: 0; width: 8px; border-radius: 4px; }
+  .route__road::before {
+    left: 3px; top: 0; bottom: 0; width: 2px;
+    background: repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.9) 0 8px, transparent 8px 16px);
+  }
+  .route__done { width: 100%; height: calc(var(--p) * 100%); opacity: 0.85; }
+  .route__stop { left: -2px; top: calc(var(--at) * var(--len) - 6px); }
+  .route__truck {
+    left: -13px; top: -10px;
+    transform: translateY(calc(var(--p) * var(--len))) rotate(90deg);
+  }
+}
+
+/* 横の道路（スマホ・タブレット：ヘッダーの下） */
+@media (max-width: 1359.98px) {
+  .route { left: 0; right: 0; top: var(--header-h, 72px); height: 24px; --len: calc(100vw - 44px); }
+  .route__road { left: 0; right: 0; bottom: 0; height: 4px; }
+  .route__road::before {
+    left: 0; right: 0; top: 1px; height: 2px;
+    background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.85) 0 8px, transparent 8px 16px);
+  }
+  .route__done { height: 100%; width: calc(var(--p) * 100%); }
+  .route__stop { bottom: -3px; left: calc(var(--at) * var(--len) + 22px - 5px); }
+  .route__dot { width: 10px; height: 10px; border-width: 2px; }
+  .route__name { display: none; }
+  .route__truck { bottom: 2px; left: 5px; transform: translateX(calc(var(--p) * var(--len))); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__image { transform: none; }
+  .hero__label, .hero__statement, .hero__actions { opacity: 1; transform: none; clip-path: none; }
+  .hero__accent::after, .section__title::after, .card::before { transform: scaleX(1); }
+  .card[data-reveal] { transform: none; }
+}
