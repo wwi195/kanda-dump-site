@@ -200,3 +200,14 @@ main { overflow-x: clip; }
   .hero__accent::after, .section__title::after, .card::before { transform: scaleX(1); }
   .card[data-reveal] { transform: none; }
 }
+
+/* ---- 狭いスマホ：ヘッダーの電話番号と社名を1行に収める ---- */
+.site-header__call { white-space: nowrap; }
+@media (max-width: 420px) {
+  .site-header__inner { gap: var(--space-1); }
+  .site-logo { gap: var(--space-1); }
+  .site-logo__badge { height: 30px; padding: 4px; }
+  .site-logo__main { font-size: 1.05rem; white-space: nowrap; }
+  .site-logo__sub { display: none; }
+  .site-header__call { padding: 6px 10px; font-size: 0.8rem; }
+}
